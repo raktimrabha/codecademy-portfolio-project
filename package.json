@@ -1,0 +1,24 @@
+{
+  "name": "codecademy-portfolio-project",
+  "version": "1.0.0",
+  "description": "portfolio made with bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "sass-dev": "sass --watch styles.scss style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raktimrabha/codecademy-portfolio-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raktimrabha/codecademy-portfolio-project/issues"
+  },
+  "homepage": "https://github.com/raktimrabha/codecademy-portfolio-project#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "sass": "^1.86.0"
+  }
+}
