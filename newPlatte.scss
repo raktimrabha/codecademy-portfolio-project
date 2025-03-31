@@ -1,0 +1,186 @@
+// style.scss
+
+
+// SCSS Variables (from color palette)
+$red-pantone: #e63946ff;
+$honeydew: #f1faeeff;
+$non-photo-blue: #a8dadcff;
+$cerulean: #457b9dff;
+$berkeley-blue: #1d3557ff;
+
+:root {
+  // --- Theme Palette ---
+  --bs-primary: #{$cerulean}; // Use SCSS variable
+  --bs-primary-rgb: 69, 123, 157; // RGB for Cerulean
+  --bs-dark: #{$berkeley-blue}; // Use SCSS variable
+  --bs-dark-rgb: 29, 53, 87; // RGB for Berkeley Blue
+
+  // --- Accent Colors ---
+  --bs-danger: #{$red-pantone}; // Override Bootstrap's danger color
+  --bs-danger-rgb: 230, 57, 70;
+  --bs-light-accent: #{$non-photo-blue}; // Non-photo blue as a light accent
+  --bs-light-accent-rgb: 168, 218, 220;
+
+//   // --- Light Tints ---
+//   --bs-light-primary: rgba(var(--bs-primary-rgb), 0.1); // Light Cerulean
+//   --bs-light-accent-tint: rgba(var(--bs-light-accent-rgb), 0.15); // Light Non-photo blue
+  
+  // --- Tech Colors
+  --bs-html-color: #e34c26;
+  --bs-css-color: #264de4;
+  --bs-js-color: #f7df1e;
+  --bs-bootstrap-color: #7952b3;
+
+  --bs-light-skill-bg: rgba(var(--bs-light-accent-rgb), 0.2); // Slightly stronger Non-photo blue tint
+}
+
+// Import Bootstrap SCSS
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
+
+
+body {
+    font-family: "Kumbh Sans", sans-serif;
+    background-color: $red-pantone; 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Poppins", sans-serif; // Heading font
+}
+
+.bg-main {
+    background-color: $non-photo-blue; // Match body background
+}
+
+// -- Navbar --
+.navbar {
+    .nav-link {
+        font-weight: 500;
+        color: $gray-700;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius;
+        margin: 0.1rem 0;
+        
+        &:not(.active):hover {
+            color: var(--bs-primary) !important; // Cerulean text on hover
+            background-color: transparent;
+        }
+        
+        &.active {
+            background-color: var(--bs-light-accent); // Cerulean background
+            color: $white !important;
+        }
+    }
+}
+
+// -- Logos --
+.logo-img {
+    border-radius: 50%;
+    background-color: var(--bs-light-primary); // Light Cerulean background
+    padding: 5px;
+    outline: 2px solid var(--bs-primary); // Cerulean outline
+    outline-offset: 2px;
+}
+
+.footer-logo-img {
+    border-radius: 50%;
+    background-color: var(--bs-light-primary); // Light Cerulean background
+    padding: 5px;
+    outline: 2px solid var(--bs-primary); // Cerulean outline
+    filter: brightness(1.1); // Adjust filter for dark footer bg if needed
+}
+
+// -- Home/About Section --
+.profile-img-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 5px solid $white;
+}
+
+@include media-breakpoint-up(lg) {
+    .profile-img-container {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+.social-icon {
+    &:hover {
+        color: var(--bs-primary) !important; // Cerulean on hover
+    }
+}
+
+// -- Skills & Projects Section --
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bs-light-skill-bg); // Use the defined light skill bg tint
+    
+    // Optional: If you want specific backgrounds per skill using the new palette
+    // &.bg-skill-html { background-color: rgba($red-pantone, 0.1); }
+    // &.bg-skill-css { background-color: rgba($cerulean, 0.1); }
+    // &.bg-skill-js { background-color: rgba($non-photo-blue, 0.2); }
+    // &.bg-skill-bootstrap { background-color: rgba($berkeley-blue, 0.1); }
+}
+
+// Text colors for skill icons (keeping original semantic colors)
+.text-html { color: var(--bs-html-color); }
+.text-css { color: var(--bs-css-color); }
+.text-js { color: var(--bs-js-color); }
+.text-bootstrap { color: var(--bs-bootstrap-color); }
+
+// Progress bar background colors (keeping original semantic colors)
+.progress-bar {
+    &.bg-html { background-color: var(--bs-html-color); }
+    &.bg-css { background-color: var(--bs-css-color); }
+    &.bg-js { background-color: var(--bs-js-color); }
+    &.bg-bootstrap { background-color: var(--bs-bootstrap-color); }
+    // Default progress bar uses --bs-primary (Cerulean)
+}
+
+// Custom Badge Colors (Using new palette for consistency)
+.badge {
+    // Example: Style all badges similarly or create specific ones
+    &.bg-html, &.bg-css, &.bg-js, &.bg-bootstrap {
+     background-color: var(--bs-light-accent-tint) !important; // Light Non-photo blue bg
+     color: var(--bs-dark) !important; // Dark text
+     border: 1px solid var(--bs-light-accent); // Non-photo blue border
+    }
+  // Override specific badges if needed
+   &.bg-primary { // Bootstrap primary badge
+     background-color: var(--bs-light-primary) !important;
+     color: var(--bs-primary) !important;
+     border: 1px solid var(--bs-primary);
+    }
+   &.bg-danger { // Bootstrap danger badge (now uses red-pantone)
+    background-color: rgba(var(--bs-danger-rgb), 0.1) !important;
+    color: var(--bs-danger) !important;
+     border: 1px solid var(--bs-danger);
+    }
+    // Add more overrides if you use other standard Bootstrap badge colors (warning, success, etc.)
+}
+
+
+// -- Footer --
+footer {
+    background-color: var(--bs-dark); // Berkeley Blue background
+}
+
+.social-icon-footer {
+  &:hover {
+    color: var(--bs-primary) !important; // Cerulean on hover
+  }
+}
